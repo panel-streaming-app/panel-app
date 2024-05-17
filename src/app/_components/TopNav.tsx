@@ -1,3 +1,4 @@
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Image from "next/image";
 
 export default function TopNav() {
@@ -5,7 +6,7 @@ export default function TopNav() {
     <div className="bg-primary-100 my-5 ml-5 flex flex-col items-center justify-between rounded-xl px-6 py-[35px]">
       <section className=" flex flex-col items-center gap-20">
         <a className="flex">
-          {<Image src="/logo.svg" width={32} height={32} alt="logo" />}{" "}
+          {<Image src="/newLogo.svg" width={32} height={32} alt="logo" />}{" "}
         </a>
 
         <section className="flex h-auto flex-col gap-10">
@@ -23,16 +24,14 @@ export default function TopNav() {
           </a>
         </section>
       </section>
-
-      <a href="">
-        <Image
-          src="/image-avatar.png"
-          width={40}
-          height={40}
-          alt="profile photo"
-          className=" rounded-full border border-white"
-        />
-      </a>
+      <SignedIn>
+        <UserButton />
+      </SignedIn>
+      <SignedOut>
+        <div className=" h-[40px] w-[40px] overflow-hidden rounded-full border border-white">
+          <div className="h-full w-full bg-white opacity-25 blur-md"></div>
+        </div>
+      </SignedOut>
     </div>
   );
 }

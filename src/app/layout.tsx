@@ -1,11 +1,12 @@
 import "~/styles/globals.css";
+import { ClerkProvider } from "@clerk/nextjs";
 
 import { Outfit } from "next/font/google";
 import TopNav from "./_components/TopNav";
 
 const outfit = Outfit({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["200", "300", "400", "500", "600", "700"],
   variable: "--font-geist-sans",
 });
 
@@ -21,11 +22,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${outfit.variable} `}>
-      <body className=" bg-tertiary-100 flex h-svh max-h-screen w-full flex-row">
-        <TopNav />
-        {children}
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en" className={`${outfit.variable} `}>
+        <body className=" bg-tertiary-100 relative flex h-svh max-h-screen w-screen flex-row">
+          <TopNav />
+          {children}
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
