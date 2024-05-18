@@ -5,11 +5,11 @@ import * as SignIn from "@clerk/elements/sign-in";
 
 export default function SignInPage() {
   return (
-    <div className="bg-tertiary-100 = absolute left-0 grid h-full w-full flex-grow items-center px-4 sm:justify-center">
+    <div className="absolute  left-0 grid h-full w-full flex-grow items-center bg-tertiary-100 px-4 sm:justify-center">
       <SignIn.Root>
         <SignIn.Step
           name="start"
-          className="bg-primary-100 w-full flex-grow space-y-6 rounded-2xl bg-[radial-gradient(circle_at_50%_0%,theme(colors.white/10%),transparent)] px-4 py-10 ring-1 ring-inset ring-white/5 sm:w-96 sm:px-8"
+          className="w-full flex-grow space-y-6 rounded-2xl bg-primary-100 bg-[radial-gradient(circle_at_50%_0%,theme(colors.white/10%),transparent)] px-4 py-10 ring-1 ring-inset ring-white/5 sm:w-96 sm:px-8"
         >
           <header className="text-center">
             <svg
@@ -41,7 +41,7 @@ export default function SignInPage() {
           <div className="space-y-2">
             <Clerk.Connection
               name="google"
-              className="text-primary-100  flex w-full items-center justify-center gap-x-3 rounded-md bg-neutral-300 px-3.5 py-2.5 text-sm font-medium shadow-[0_1px_0_0_theme(colors.white/5%)_inset,0_0_0_1px_theme(colors.white/2%)_inset] outline-none hover:bg-gradient-to-b hover:from-white/5 hover:to-white/5 focus-visible:outline-[1.5px] focus-visible:outline-offset-2 focus-visible:outline-white active:bg-gradient-to-b active:from-black/20 active:to-black/20 active:text-white/70"
+              className="flex  w-full items-center justify-center gap-x-3 rounded-md bg-neutral-300 px-3.5 py-2.5 text-sm font-medium text-primary-100 shadow-[0_1px_0_0_theme(colors.white/5%)_inset,0_0_0_1px_theme(colors.white/2%)_inset] outline-none hover:bg-gradient-to-b hover:from-white/5 hover:to-white/5 focus-visible:outline-[1.5px] focus-visible:outline-offset-2 focus-visible:outline-white active:bg-gradient-to-b active:from-black/20 active:to-black/20 active:text-white/70"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

@@ -1,5 +1,6 @@
 import "~/styles/globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
+import { AppContextProvider } from "./Context/state";
 
 import { Outfit } from "next/font/google";
 import TopNav from "./_components/TopNav";
@@ -24,10 +25,12 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en" className={`${outfit.variable} `}>
-        <body className=" bg-tertiary-100 relative flex h-svh max-h-screen w-screen flex-row">
-          <TopNav />
-          {children}
-        </body>
+        <AppContextProvider>
+          <body className=" relative flex h-svh max-h-screen w-screen flex-row bg-tertiary-100">
+            <TopNav />
+            {children}
+          </body>
+        </AppContextProvider>
       </html>
     </ClerkProvider>
   );

@@ -3,8 +3,8 @@ import {
   index,
   pgTableCreator,
   serial,
-  // timestamp,
   varchar,
+  integer,
 } from "drizzle-orm/pg-core";
 
 export const createTable = pgTableCreator((name) => `streaming-app_${name}`);
@@ -14,12 +14,14 @@ export const media = createTable(
   {
     id: serial("id").primaryKey(),
     title: varchar("title", { length: 256 }).notNull(),
-    thumbnail: varchar("thumbnail", { length: 2000 }).notNull(),
-    bookmarked: boolean("bookmarked").notNull(),
-    type: varchar("type", { length: 20 }).notNull(),
+    isBookmarked: boolean("isBookmarked").notNull(),
+    category: varchar("category", { length: 20 }).notNull(),
+    rating: varchar("rating", { length: 20 }).notNull(),
+    year: integer("year").notNull(),
+    isTrending: boolean("isTrending").notNull(),
   },
   (example) => ({
     nameIndex: index("name_idx").on(example.title),
-    typeIndex: index("type_idx").on(example.type),
+    isFilmIndex: index("isFilm_idx").on(example.category),
   }),
 );
