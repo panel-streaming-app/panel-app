@@ -9,7 +9,6 @@ export const getThumbnailPath = (title: string, size = "large") => {
   let path = `/thumbnails/${res}/regular/${size}.jpg`;
 
   if (path == undefined) {
-    console.log(path);
     path = `/thumbnails/${res}/trending/large.jpg`;
   }
   return path;

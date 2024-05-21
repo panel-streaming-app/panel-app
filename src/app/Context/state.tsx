@@ -6,20 +6,24 @@ import type { Film } from "../../../types";
 
 const initialState = {
   media: [],
-  search: "",
-  filter: "",
+  searchTerm: "",
+  searchResults: [],
+  page: "",
   setMedia: (): Film[] => [],
-  setSearch: (): string => "",
-  setFilter: (): string => "",
+  setSearchTerm: (): string => "",
+  setSearchResults: (): Film[] => [],
+  setPage: (): string => "",
 };
 
 export interface State {
   media: Film[];
-  search: string;
-  filter: string;
+  searchTerm: string;
+  searchResults: Film[];
+  page: string;
   setMedia: Dispatch<SetStateAction<Film[]>>;
-  setSearch: Dispatch<SetStateAction<string>>;
-  setFilter: Dispatch<SetStateAction<string>>;
+  setSearchTerm: Dispatch<SetStateAction<string>>;
+  setSearchResults: Dispatch<SetStateAction<Film[]>>;
+  setPage: Dispatch<SetStateAction<string>>;
 }
 
 export const appContext = createContext<State>(initialState);
@@ -28,16 +32,21 @@ export const AppContextProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [media, setMedia] = useState<Film[]>(initialState.media);
-  const [search, setSearch] = useState<string>(initialState.search);
-  const [filter, setFilter] = useState<string>(initialState.filter);
+  const [searchTerm, setSearchTerm] = useState<string>(initialState.searchTerm);
+  const [searchResults, setSearchResults] = useState<Film[]>(
+    initialState.searchResults,
+  );
+  const [page, setPage] = useState<string>(initialState.page);
 
   const values = {
     media,
-    search,
-    filter,
+    searchTerm,
+    searchResults,
+    page,
     setMedia,
-    setSearch,
-    setFilter,
+    setSearchTerm,
+    setSearchResults,
+    setPage,
   };
 
   return <appContext.Provider value={values}>{children}</appContext.Provider>;

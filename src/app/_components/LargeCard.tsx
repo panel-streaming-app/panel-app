@@ -23,7 +23,7 @@ export default function LargeCard({
 
       <Image
         src={imageUrl}
-        alt="movie"
+        alt={`A ${year} ${category} called ${title}, and rated ${rating}`}
         width={500}
         height={250}
         className="absolute bottom-0 left-0 z-0 h-[230px] w-full object-cover"
@@ -35,7 +35,12 @@ export default function LargeCard({
           console.log(isBookmarked);
         }}
       >
-        <div className="fill-none stroke-white group-hover:stroke-black">
+        <div
+          className="fill-none stroke-white group-hover:stroke-black"
+          aria-label={
+            isBookmarked ? "Remove from bookmarks" : "Add to bookmarks"
+          }
+        >
           {isBookmarked ? iconBookmarkFull : iconBookmarkEmpty}
         </div>
       </div>

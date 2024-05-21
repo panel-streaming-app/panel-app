@@ -1,33 +1,66 @@
+"use client";
+
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Image from "next/image";
+import { useAppContext } from "../Context/state";
 import {
   iconMovieNav,
   iconTvSeriesNav,
   iconBookmarkNav,
   iconHomeNav,
 } from "../../utils/iconSVGs";
+import Link from "next/link";
 
 export default function TopNav() {
+  const { page } = useAppContext();
   return (
     <div className="my-7 ml-7 flex flex-col items-center justify-between rounded-xl bg-primary-100 px-6 py-[35px]">
       <section className=" flex flex-col items-center gap-20">
-        <a className="flex">
+        <a className="flex" href="/">
           {<Image src="/newLogo.svg" width={32} height={32} alt="logo" />}{" "}
         </a>
 
         <section className="flex h-auto flex-col gap-10">
-          <a href="" className="  fill-white hover:fill-white">
+          <Link
+            href="/"
+            className={
+              page == "Home"
+                ? "fill-white"
+                : "fill-tertiary-50" + " hover:fill-white"
+            }
+          >
             {iconHomeNav}
-          </a>
-          <a href="" className=" fill-tertiary-50 hover:fill-white">
+          </Link>
+          <Link
+            href="/movies"
+            className={
+              page == "Movie"
+                ? "fill-white"
+                : "fill-tertiary-50" + " hover:fill-white"
+            }
+          >
             {iconMovieNav}
-          </a>
-          <a href="" className=" fill-tertiary-50 hover:fill-white">
+          </Link>
+          <Link
+            href="/tv-series"
+            className={
+              page == "TV Series"
+                ? "fill-white"
+                : "fill-tertiary-50" + " hover:fill-white"
+            }
+          >
             {iconTvSeriesNav}
-          </a>
-          <a href="" className=" fill-tertiary-50 hover:fill-white">
+          </Link>
+          <Link
+            href="/bookmarks"
+            className={
+              page == "Bookmarks"
+                ? "fill-white"
+                : "fill-tertiary-50" + " hover:fill-white"
+            }
+          >
             {iconBookmarkNav}
-          </a>
+          </Link>
         </section>
       </section>
       <SignedIn>
