@@ -43,6 +43,7 @@ Users should be able to:
 ### Built with
 
 - Typescript
+- Clerk
 - Tailwind CSS
 - drizzle
 - Flexbox
