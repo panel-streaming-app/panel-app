@@ -1,12 +1,15 @@
 "use client";
 import type { Film } from "types";
+
 import Image from "next/image";
-import { getThumbnailPath } from "../../utils/Helpers";
-import {
-  iconMovieSmall,
-  iconBookmarkFull,
-  iconBookmarkEmpty,
-} from "../../utils/iconSVGs";
+import { playIcon } from "../../utils/iconSVGs";
+import { useAppContext } from "../Context/state";
+
+import { getThumbnailPath, handleBookmark } from "../../utils/Helpers";
+import { useState, useEffect } from "react";
+import Overlay from "./Overlay";
+import BookmarkButton from "./BookmarkButton";
+import CardDetails from "./CardDetails";
 
 export default function MediumCard({
   title,
@@ -14,13 +17,31 @@ export default function MediumCard({
   rating,
   year,
   category,
+  id,
 }: Film) {
+  const { setBookmarkEvent } = useAppContext();
   const imageUrl = getThumbnailPath(title);
+  const [bookmark, setBookmark] = useState(false);
+
+  useEffect(() => {
+    if (isBookmarked) {
+      setBookmark(isBookmarked);
+    }
+  }, [isBookmarked]);
+
+  const handleClick = async () => {
+    const response = await handleBookmark(id!, bookmark);
+
+    if (response != undefined) {
+      setBookmark(response);
+      setBookmarkEvent(true);
+    }
+  };
 
   return (
     <div className="flex flex-col gap-3 ">
-      <div className="relative flex h-[173px] w-full max-w-full cursor-pointer items-end justify-start overflow-hidden rounded-md p-4">
-        <div className=" absolute right-0 top-0 z-10 h-[230px] w-full bg-black/30 p-2"></div>
+      <div className="group relative flex h-28 w-full max-w-full cursor-pointer items-end justify-start overflow-hidden rounded-md p-4 md:h-36 lg:h-44">
+        <Overlay icon={playIcon} text="Play" />
 
         <Image
           src={imageUrl}
@@ -30,23 +51,15 @@ export default function MediumCard({
           className="absolute bottom-0 left-0 z-0 h-[280px] w-full object-cover"
         />
 
-        <div className=" absolute right-4 top-4 z-20 rounded-full bg-black/20 p-2 hover:bg-white">
-          <div className="fill-none stroke-white group-hover:stroke-black">
-            {isBookmarked ? iconBookmarkFull : iconBookmarkEmpty}
-          </div>{" "}
-        </div>
+        <BookmarkButton bookmark={bookmark} handleClick={handleClick} />
       </div>
-      <div className="gap- z-10 flex flex-col">
-        <div className="flex flex-row gap-2 text-xs font-thin text-white/75">
-          <p>{year}</p> ∙{" "}
-          <div className=" flex flex-row items-center gap-1 fill-white/75">
-            {iconMovieSmall}
-            {category}
-          </div>{" "}
-          ∙ <p> {rating} </p>
-        </div>
-        <h2 className=" text-base font-light text-white">{title}</h2>
-      </div>
+
+      <CardDetails
+        title={title}
+        year={year}
+        category={category}
+        rating={rating}
+      />
     </div>
   );
 }

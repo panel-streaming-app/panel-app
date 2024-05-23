@@ -54,6 +54,19 @@ export const getBookmarkBySearch = async (search: string) => {
   return result;
 };
 
+export const toggleBookmark = async (
+  id: number,
+  isBookmarked: boolean,
+): Promise<{ isBookmarked: boolean }[]> => {
+  const result = await db
+    .update(media)
+    .set({ isBookmarked: !isBookmarked })
+    .where(eq(media.id, id))
+    .returning({ isBookmarked: media.isBookmarked });
+
+  return result;
+};
+
 export const seedDB = async (data: Film[]) => {
   await db.insert(media).values(data).returning({ title: media.title });
 };

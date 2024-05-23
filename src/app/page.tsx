@@ -4,11 +4,12 @@ import { SignedIn, SignedOut } from "@clerk/nextjs";
 import { useAppContext } from "./Context/state";
 import { useEffect } from "react";
 import { getEvery } from "~/server/queries";
+import PageContainer from "./_components/PageContainer";
 
 import SignInPage from "./sign-in/[[...sign-in]]/page";
 import Search from "./_components/Search";
 import CarouselSection from "./_components/CarouselSection";
-import Grid4x4 from "./_components/Grid4x4";
+import Grid from "./_components/Grid";
 
 export default function HomePage() {
   const { setMedia, media, setPage } = useAppContext();
@@ -26,16 +27,15 @@ export default function HomePage() {
   const trending = media.filter((film) => film.isTrending);
 
   return (
-    <div className="max-w-screen m-0 flex h-screen w-lvw  flex-col items-start justify-start overflow-x-hidden p-8">
+    <PageContainer>
       <SignedOut>
         <SignInPage />
       </SignedOut>
       <SignedIn>
         <Search />
         <CarouselSection media={trending} heading="Trending" />
-        <Grid4x4 media={media} heading="Recomended for you" />
+        <Grid media={media} heading="Recomended for you" />
       </SignedIn>
-      ;
-    </div>
+    </PageContainer>
   );
 }

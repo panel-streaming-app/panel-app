@@ -53,16 +53,22 @@ export default function Search({ category }: { category?: string }) {
 
   return (
     <form
-      className="flex items-center justify-center gap-4"
+      className="mb-5 flex items-center justify-center gap-3 sm:gap-4 lg:mb-4"
       onSubmit={handleSubmit}
     >
-      <Image src={"/icon-search.svg"} alt="Search" width={24} height={24} />
+      <Image
+        src={"/icon-search.svg"}
+        alt="Search"
+        width={24}
+        height={24}
+        className="size-4  md:size-6"
+      />
       <input
         type="search"
         placeholder={
           category !== undefined ? `Search for ${category}` : "Search"
         }
-        className="w-80 border-tertiary-50 bg-transparent p-2 text-xl text-white autofill:bg-transparent focus:border-b focus:outline-none"
+        className="w-80 border-tertiary-50 bg-transparent font-thin text-white autofill:bg-transparent focus:border-b focus:outline-none sm:text-xl lg:p-2"
         onKeyDown={handleKeyDown}
       />
     </form>

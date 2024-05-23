@@ -9,10 +9,12 @@ const initialState = {
   searchTerm: "",
   searchResults: [],
   page: "",
+  bookmarkEvent: false,
   setMedia: (): Film[] => [],
   setSearchTerm: (): string => "",
   setSearchResults: (): Film[] => [],
   setPage: (): string => "",
+  setBookmarkEvent: (): boolean => false,
 };
 
 export interface State {
@@ -20,10 +22,12 @@ export interface State {
   searchTerm: string;
   searchResults: Film[];
   page: string;
+  bookmarkEvent: boolean;
   setMedia: Dispatch<SetStateAction<Film[]>>;
   setSearchTerm: Dispatch<SetStateAction<string>>;
   setSearchResults: Dispatch<SetStateAction<Film[]>>;
   setPage: Dispatch<SetStateAction<string>>;
+  setBookmarkEvent: Dispatch<SetStateAction<boolean>>;
 }
 
 export const appContext = createContext<State>(initialState);
@@ -37,16 +41,21 @@ export const AppContextProvider: React.FC<{ children: ReactNode }> = ({
     initialState.searchResults,
   );
   const [page, setPage] = useState<string>(initialState.page);
+  const [bookmarkEvent, setBookmarkEvent] = useState<boolean>(
+    initialState.bookmarkEvent,
+  );
 
   const values = {
     media,
     searchTerm,
     searchResults,
     page,
+    bookmarkEvent,
     setMedia,
     setSearchTerm,
     setSearchResults,
     setPage,
+    setBookmarkEvent,
   };
 
   return <appContext.Provider value={values}>{children}</appContext.Provider>;

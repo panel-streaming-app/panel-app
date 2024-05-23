@@ -19,3 +19,7 @@
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+.cl-internal-1j7ahlv {
+  @apply h-6 w-6 border border-white sm:h-8 sm:w-8;
+}

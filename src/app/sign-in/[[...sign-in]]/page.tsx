@@ -5,11 +5,11 @@ import * as SignIn from "@clerk/elements/sign-in";
 
 export default function SignInPage() {
   return (
-    <div className="absolute  left-0 grid h-full w-full flex-grow items-center bg-tertiary-100 px-4 sm:justify-center">
+    <div className="absolute left-0 top-0 grid h-full w-full flex-grow items-center bg-tertiary-100 px-4 lg:justify-center">
       <SignIn.Root>
         <SignIn.Step
           name="start"
-          className="w-full flex-grow space-y-6 rounded-2xl bg-primary-100 bg-[radial-gradient(circle_at_50%_0%,theme(colors.white/10%),transparent)] px-4 py-10 ring-1 ring-inset ring-white/5 sm:w-96 sm:px-8"
+          className="w-full flex-grow space-y-6 rounded-2xl bg-primary-100 bg-[radial-gradient(circle_at_50%_0%,theme(colors.white/10%),transparent)] px-4 py-10 ring-1 ring-inset ring-white/5 lg:w-96 lg:px-8"
         >
           <header className="text-center">
             <svg

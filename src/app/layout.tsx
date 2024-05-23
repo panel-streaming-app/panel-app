@@ -26,7 +26,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en" className={`${outfit.variable} `}>
         <AppContextProvider>
-          <body className=" relative flex h-svh max-h-screen w-screen flex-row bg-tertiary-100">
+          <body className=" relative h-svh max-h-screen w-screen flex-row bg-tertiary-100 lg:flex">
             <TopNav />
             {children}
           </body>

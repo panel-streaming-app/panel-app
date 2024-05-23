@@ -2,9 +2,10 @@
 import type { Film } from "types";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import { useAppContext } from "../Context/state";
-import Grid4x4 from "../_components/Grid4x4";
+import Grid from "../_components/Grid";
 import { useEffect } from "react";
 import { getEvery } from "~/server/queries";
+import PageContainer from "../_components/PageContainer";
 
 import SignInPage from "../sign-in/[[...sign-in]]/page";
 import Search from "../_components/Search";
@@ -26,15 +27,14 @@ export default function MoviePage() {
   movies = media;
 
   return (
-    <div className="max-w-screen m-0 flex h-screen w-lvw  flex-col items-start justify-start overflow-x-hidden p-8">
+    <PageContainer>
       <SignedOut>
         <SignInPage />
       </SignedOut>
       <SignedIn>
         <Search category={currentPage} />
-        <Grid4x4 media={movies} heading={currentPage} />
+        <Grid media={movies} heading={currentPage} isTopOfPage={true} />
       </SignedIn>
-      ;
-    </div>
+    </PageContainer>
   );
 }
