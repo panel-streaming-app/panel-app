@@ -80,3 +80,17 @@ export const playIcon = (
     />
   </svg>
 );
+
+export const closeIcon = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 32 32"
+    className="size-full"
+    fill="none"
+  >
+    <path
+      fill="#fff"
+      d="m26.666 9.213-3.88-3.88L16 12.12 9.213 5.333l-3.88 3.88L12.12 16l-6.787 6.787 3.88 3.88L16 19.88l6.786 6.787 3.88-3.88L19.88 16l6.786-6.787Z"
+    />
+  </svg>
+);

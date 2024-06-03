@@ -10,9 +10,10 @@ import SignInPage from "./sign-in/[[...sign-in]]/page";
 import Search from "./_components/Search";
 import CarouselSection from "./_components/CarouselSection";
 import Grid from "./_components/Grid";
+import VideoPlayer from "./_components/VideoPlayer";
 
 export default function HomePage() {
-  const { setMedia, media, setPage } = useAppContext();
+  const { setMedia, media, setPage, isPlaying } = useAppContext();
   const currentPage = "Home";
 
   useEffect(() => {
@@ -32,6 +33,7 @@ export default function HomePage() {
         <SignInPage />
       </SignedOut>
       <SignedIn>
+        {isPlaying && <VideoPlayer />}
         <Search />
         <CarouselSection media={trending} heading="Trending" />
         <Grid media={media} heading="Recomended for you" />

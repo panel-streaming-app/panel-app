@@ -19,7 +19,7 @@ export default function MediumCard({
   category,
   id,
 }: Film) {
-  const { setBookmarkEvent } = useAppContext();
+  const { setBookmarkEvent, setIsPlaying } = useAppContext();
   const imageUrl = getThumbnailPath(title);
   const [bookmark, setBookmark] = useState(false);
 
@@ -38,8 +38,12 @@ export default function MediumCard({
     }
   };
 
+  const handlePlay = () => {
+    setIsPlaying(true);
+  };
+
   return (
-    <div className="flex flex-col gap-3 ">
+    <div className="flex flex-col gap-3 " onClick={handlePlay}>
       <div className="group relative flex h-28 w-full max-w-full cursor-pointer items-end justify-start overflow-hidden rounded-md p-4 md:h-36 lg:h-44">
         <Overlay icon={playIcon} text="Play" />
 

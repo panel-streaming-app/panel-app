@@ -3,6 +3,7 @@ import type { Film } from "types";
 
 import Image from "next/image";
 import { playIcon } from "../../utils/iconSVGs";
+import { useAppContext } from "../Context/state";
 
 import { getThumbnailPath, handleBookmark } from "../../utils/Helpers";
 import { useState } from "react";
@@ -22,6 +23,8 @@ export default function LargeCard({
 
   const imageUrl = getThumbnailPath(title);
 
+  const { setIsPlaying } = useAppContext();
+
   const handleClick = async () => {
     const response = await handleBookmark(id!, bookmark);
     if (response != undefined) {
@@ -29,8 +32,15 @@ export default function LargeCard({
     }
   };
 
+  const handlePlay = () => {
+    setIsPlaying(true);
+  };
+
   return (
-    <div className="group relative flex h-36 w-64 flex-shrink-0 cursor-pointer items-end justify-start overflow-hidden rounded-md p-4 sm:h-[230px] sm:min-w-[470px] lg:p-2">
+    <div
+      className="group relative flex h-36 w-64 flex-shrink-0 cursor-pointer items-end justify-start overflow-hidden rounded-md p-4 sm:h-[230px] sm:min-w-[470px] lg:p-2"
+      onClick={handlePlay}
+    >
       <Overlay icon={playIcon} text="Play" />
       <Image
         src={imageUrl}
