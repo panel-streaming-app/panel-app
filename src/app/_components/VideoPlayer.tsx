@@ -13,7 +13,7 @@ export default function VideoPlayer() {
         <div className="flex h-full w-full flex-col items-center justify-center">
           <div className="size-16 sm:size-32">{playIcon}</div>
           <div
-            className="absolute right-4 top-4 size-6 sm:right-8 sm:top-8"
+            className="absolute right-4 top-4 size-6 cursor-pointer sm:right-8 sm:top-8"
             onClick={handleClose}
           >
             {closeIcon}
